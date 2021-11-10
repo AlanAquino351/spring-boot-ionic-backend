@@ -3,15 +3,24 @@ package com.dominioprojeto.cursomc.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
 /* Implentação da interface Serializable: 
  * Exigido pela linguagem Java;
  * Faz com que os objetos da classe sejam convertidos para uma sequencia de bits
  * para que os objetos sejam gravados em arquivos, trafegar em rede e etc... 
 */ 
 
+@Entity
 public class Categoria implements Serializable{ 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	
