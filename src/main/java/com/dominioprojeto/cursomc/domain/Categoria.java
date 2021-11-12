@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 /* Implentação da interface Serializable: 
  * Exigido pela linguagem Java;
@@ -27,6 +30,10 @@ public class Categoria implements Serializable{
 	private Integer id;
 	private String nome;
 	
+	/*@JsonManagedReference utilizado para referenciar corretamente os produtos sem a interferencia da classe Produto.
+	 * Obs.: Na classe Produto, temos o comando @JsonBackReference.
+	*/
+	@JsonManagedReference 
 	@ManyToMany(mappedBy = "categorias") //Como na tabela de produtos foi feito a relação entre PK e FK, aqui só é necessario informar que o mapeamento é o mesmo do produto.
 	private List<Produto> produtos = new ArrayList<>();
 	
