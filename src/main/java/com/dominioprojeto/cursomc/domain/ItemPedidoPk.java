@@ -7,8 +7,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 //Para dizer que é um subtipo
 @Embeddable
 public class ItemPedidoPk implements Serializable{
