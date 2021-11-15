@@ -18,8 +18,8 @@ public class PedidoResources {
 	private PedidoService service;
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)  //GET pois está obtendo um dado, mas poderia ser DELET para deletar e etc
-	public ResponseEntity<?> find(@PathVariable Integer id) { // @PathVariable faz com que o sistema saiba que é o valor da ID é o mesmo da linha 17 (value="/{id}")
-		Pedido obj = service.buscar(id);
+	public ResponseEntity<Pedido> find(@PathVariable Integer id) { // @PathVariable faz com que o sistema saiba que é o valor da ID é o mesmo da linha 17 (value="/{id}")
+		Pedido obj = service.find(id);
 		return ResponseEntity.ok().body(obj); // Ok que deu certo e body é o corpo, que é o obj
 	}
 }

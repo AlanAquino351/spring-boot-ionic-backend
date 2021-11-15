@@ -22,8 +22,8 @@ public class CategoriaResources {
 	private CategoriaService service;
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)  //GET pois está obtendo um dado, mas poderia ser DELET para deletar e etc
-	public ResponseEntity<?> find(@PathVariable Integer id) { // @PathVariable faz com que o sistema saiba que é o valor da ID é o mesmo da linha 17 (value="/{id}")
-		Categoria obj = service.buscar(id);
+	public ResponseEntity<Categoria> find(@PathVariable Integer id) { // @PathVariable faz com que o sistema saiba que é o valor da ID é o mesmo da linha 17 (value="/{id}")
+		Categoria obj = service.find(id);
 		return ResponseEntity.ok().body(obj); // Ok que deu certo e body é o corpo, que é o obj
 	}
 	
@@ -33,5 +33,12 @@ public class CategoriaResources {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id){
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
 	}
 }
